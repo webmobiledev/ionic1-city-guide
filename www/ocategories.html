@@ -1,0 +1,24 @@
+<ion-view>
+<ion-nav-title>{{titleOffers}}</ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-search" href="#/tab/osearch"></a>
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false" class="padding">
+
+<h3 class="title_center_with_border">{{selectCategory}}</h3>
+
+<div class="row flex_wrap">
+<div class="col col-33" ng-repeat="item in offers_categories">
+<div class="image_1">
+<a href="#/tab/ocategory/{{item.id}}">
+<img cache-src="{{imagesfolder}}/{{item.offer_category_image}}">
+<h5 ng-bind-html="item.offer_category_name"></h5>
+</a>
+</div>
+</div>
+</div>
+
+</ion-content>
+</ion-view>

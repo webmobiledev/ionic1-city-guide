@@ -1,0 +1,21 @@
+<ion-view>
+<ion-nav-title ng-bind-html="data.place_category_name"></ion-nav-title>
+
+<ion-content has-bouncing="false" class="padding">
+
+<h3 class="title_center_with_border">{{selectType}}</h3>
+
+<div class="row flex_wrap">
+<div class="col col-33" ng-repeat="item in types" ng-if="item.place_type_category==data.place_category_id">
+<div class="image_1">
+<a href="#/tab/pcategory/{{item.id}}">
+<img cache-src="{{imagesfolder}}/{{item.place_type_image}}">
+<h5 ng-bind-html="item.place_type_name"></h5>
+</a>
+</div>
+</div>
+</div>
+
+</ion-content>
+
+</ion-view>

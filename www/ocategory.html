@@ -1,0 +1,25 @@
+<ion-view>
+<ion-nav-title ng-bind-html="data.offer_category_name"></ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-search" href="#/tab/osearch"></a>
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false">
+
+
+<div class="row responsive-sm flex_wrap">
+        <div class="col col-100 col-res-50" ng-repeat="item in offers" ng-if="item.offer_category==data.offer_category_id" style="margin-bottom: 0px;">
+<div class="card-2" style="margin: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{item.offer_image}}');">
+  <div class="card-2-category"><span class="card-2-price">{{item.offer_price}} {{currency}}</span> <span class="card-2-oldprice">{{item.offer_oldprice}} {{currency}}</span></div>
+  <div class="card-2-description">
+    <h2 ng-bind-html="item.offer_title"></h2>
+    <p ng-bind-html="item.category_name"></p>
+  </div>
+  <a class="card-2-link" href="#/tab/offer/{{item.id}}"></a>
+</div>
+        </div>
+        </div>
+
+</ion-content>
+</ion-view>

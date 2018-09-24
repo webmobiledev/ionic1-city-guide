@@ -1,0 +1,130 @@
+<ion-view view-title="Home" hide-nav-bar="true" hide-tabs>
+<ion-content has-bouncing="false">
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(142, 68, 173,0.6) 0%, rgba(142, 68, 173,0.6) 50%), url('img/cover.jpg');">
+  <div class="banner-content">
+    <h1>{{city}}</h1>
+    <p>{{welcomtext}}</p>
+  </div>
+</div>
+
+<a class="item item_title" href="#/tab/categories">
+    {{bestPlacestext}}
+    <span class="item-note" ng-bind-html="seeAlltext">
+    </span>
+  </a>
+
+  <div class="row flex_wrap">
+<div class="col col-50 col-res-33" ng-repeat="item in places | limitTo: 13" ng-if="item.place_featured=='Yes'">
+          <a href="#/tab/place/{{item.id}}">
+          <div class="card_material min-height">
+            <div class="card_material-image min-height">
+              <img src="{{imagesfolder}}/{{item.place_image}}">
+              <span class="card_material-title" ng-bind-html="item.place_name"></span>
+            </div>
+          </div>
+          </a>
+</div>
+</div>
+
+
+<a class="item item_title" href="#/tab/ncategories">
+    {{latestNewstext}}
+    <span class="item-note" ng-bind-html="seeAlltext">
+      
+    </span>
+  </a>
+  <br/>
+
+<div class="list" ng-repeat="item in news | limitTo: 4" style="margin-bottom: 5px;border-bottom: 0px solid #eee;">
+
+    <a class="item item-avatar" href="#/tab/post/{{item.id}}" style="border: none;">
+      <img src="{{imagesfolder}}/{{item.news_image}}">
+      <h2 ng-bind-html="item.news_title" style="font-size: 14px;"></h2>
+      <p ng-bind-html="item.category_name"></p>
+    </a>
+
+</div>
+
+<a class="item item_title" href="#/tab/ocategories">
+    {{bestOfferstext}}
+    <span class="item-note" ng-bind-html="seeAlltext">
+    </span>
+  </a>
+
+<div class="row responsive-sm flex_wrap">
+        <div class="col col-100 col-res-50" ng-repeat="item in offers | limitTo: 6" ng-if="item.offer_featured=='Yes'" style="margin-bottom: 0px;">
+<div class="card-2" style="margin: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{item.offer_image}}')" src-is="background">
+  <div class="card-2-category"><span class="card-2-price">{{item.offer_price}}{{currency}}</span> <span class="card-2-oldprice">{{item.offer_oldprice}}{{currency}}</span></div>
+  <div class="card-2-description">
+    <h2 ng-bind-html="item.offer_title"></h2>
+    <p ng-bind-html="item.category_name"></p>
+  </div>
+  <a class="card-2-link" href="#/tab/offer/{{item.id}}" ></a>
+</div>
+        </div>
+        </div>
+
+<!--<a class="item item_title">
+    Information
+</a>
+
+
+<div class="row flex_wrap menus-footer">
+
+<div class="col col-33 bg">
+  <a href="#/tab/account">
+  <i class="ion-android-person"></i>
+  <p>My Account</p>
+  </a>
+</div>
+
+<div class="col col-33 bg">
+  <a href="#/tab/about">
+  <i class="ion-android-bookmark"></i>
+  <p>About Us</p>
+  </a>
+</div>
+
+<div class="col col-33 bg">
+  <a href="#/tab/contact">
+  <i class="ion-android-mail"></i>
+  <p>Contact Us</p>
+  </a>
+</div>
+
+</div>-->
+
+
+<div class="list actions padding" style="margin-bottom: 0">
+
+  <a class="item item-icon-left item-icon-right" href="#/tab/account">
+    <i class="icon ion-android-person"></i>
+    {{accountTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+  <a class="item item-icon-left item-icon-right" href="#/tab/about">
+    <i class="icon ion-android-bookmark"></i>
+    {{aboutusTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+  <a class="item item-icon-left item-icon-right" href="#/tab/contact">
+    <i class="icon ion-android-mail"></i>
+    {{contactTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+  <a class="item item-icon-left item-icon-right" ng-click="doLogout()">
+    <i class="icon ion-android-lock"></i>
+    {{signoutTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+
+</div>
+
+
+</ion-content>
+</ion-view>

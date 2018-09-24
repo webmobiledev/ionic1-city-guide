@@ -1,0 +1,30 @@
+<ion-view>
+<ion-nav-title>{{purchasesTitle}}</ion-nav-title>
+
+<ion-nav-buttons side="right">
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false" class="padding">
+
+<div class="order_card" ng-repeat="item in orders" ng-if="item.user_id==id_user">
+
+	<div class="list">
+
+    <a class="item item-avatar">
+      <img src="{{imagesfolder}}/{{item.offer_image}}">
+      <h2 ng-bind-html="item.offer_title"></h2>
+    </a>
+</div>
+
+<p class="reference"><b ng-bind-html="purchasesRef"></b> <br/> <span>{{item.order_txn}}</span></p>
+
+<p class="info"><b ng-bind-html="purchasesOrder"></b> <span>{{item.order_date}}</span></p>
+
+<p class="info"><b ng-bind-html="purchasesAmout"></b> <span>{{item.order_gross}} {{item.order_cc}}</span></p>
+
+<p class="status">{{item.order_status}}</p>
+
+</div>
+
+</ion-content>
+</ion-view>

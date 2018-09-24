@@ -1,0 +1,22 @@
+<ion-view>
+<ion-nav-title>{{titlecategories}}</ion-nav-title>
+
+<ion-content has-bouncing="false" class="padding">
+
+<h3 class="title_center_with_border">{{selectCategory}}</h3>
+
+<div class="row flex_wrap">
+<div class="col col-33" ng-repeat="item in categories">
+<div class="image_1">
+<a href="#/tab/types/{{item.id}}">
+<img cache-src="{{imagesfolder}}/{{item.place_category_image}}">
+<h5 ng-bind-html="item.place_category_name"></h5>
+</a>
+</div>
+</div>
+</div>
+
+<div ng-bind-html="messageError"></div>
+
+</ion-content>
+</ion-view>

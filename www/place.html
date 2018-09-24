@@ -1,0 +1,157 @@
+<ion-view>
+<ion-nav-title ng-bind-html="placeDetailsTitle"></ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-android-share-alt" ng-click="share.show()"></a>
+<a class="button button-icon icon ion-android-star" ng-click="addTofavorite(data)"></a>
+</ion-nav-buttons>
+
+<span style="display: none;">{{data.id}}</span>
+
+<ion-content has-bouncing="false">
+
+<swiper>
+  <slides>
+    <slide ng-repeat="item in gallery" ng-if="item.place_gallery_id==data.place_id">
+    	<div class="card-1" style="margin: 0; border-radius: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{item.image_name}}');box-shadow: none;width: 100%;background-position: center;">
+		</div>
+
+    </slide>
+  </slides>
+  <pagination></pagination>
+</swiper>
+
+<a class="item item_title" ng-bind-html="data.place_name">
+</a>
+
+<div id="item-info">
+<p ng-bind-html="data.place_description | limitext:true:150:' ...'" class="padding"></p>
+<a ng-click="modal.show()">{{readmoretext}} <i class="ion-android-arrow-forward"></i></a>
+</div>
+
+<a class="item item_title" style="margin-top: 10px;">
+    {{information}}
+</a>
+
+ <div class="list" id="item-detail">
+    
+   <div class="row flex_wrap">
+
+<div class="col col-100 col-res-50">
+
+  <a class="item item-avatar">
+      <img src="img/avatar.svg">
+      <h3>{{audience}}</h3>
+      <p ng-bind-html="data.place_audience"></p>
+    </a>     
+</div>
+
+<div class="col col-100 col-res-50">
+  <a class="item item-avatar item-icon-right" ng-click="openMap(map)">
+      <img src="img/pin.svg">
+      <h3>{{address}}</h3>
+      <i class="icon ion-navigate"></i>
+      <p ng-bind-html="data.place_address | limitext:true:26:'...'"></p>
+
+    </a>
+</div>
+</div>
+
+<div class="row flex_wrap">
+
+<div class="col col-100 col-res-50">
+    <a class="item item-avatar">
+      <img src="img/clock.svg">
+      <h3>{{schedule}}</h3>
+      <p ng-bind-html="data.place_hours"></p>
+    </a>
+</div>
+
+<div class="col col-100 col-res-50">
+<a class="item item-avatar">
+      <img src="img/phone.svg">
+      <h3>{{phone}}</h3>
+      <p ng-bind-html="data.place_phone"></p>
+</a>
+</div>
+
+<div class="col col-100 col-res-50">
+     
+<a class="item item-avatar item-icon-right" ng-click="openWebsite(website)">
+      <img src="img/website.svg">
+      <h3>{{website}}</h3>
+      <i class="icon ion-forward"></i>
+      <p ng-bind-html="data.place_website | limitext:true:26:'...'"></p>
+</a>
+
+</div>
+</div>
+</div>
+
+
+<a class="item item_title" href="#/tab/ocategories">
+    {{relatedOfferstext}}
+<span class="item-note" ng-bind-html="moretext"></span>
+</a>
+
+<div class="row responsive-sm flex_wrap">
+        <div class="col col-100 col-res-50" ng-repeat="item in offers" ng-if="item.offer_place==data.place_id" style="margin-bottom: 0px;">
+<div class="card-2" style="margin: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{item.offer_image}}');">
+  <div class="card-2-category"><span class="card-2-price">{{item.offer_price}}{{currency}}</span> <span class="card-2-oldprice">{{item.offer_oldprice}}{{currency}}</span></div>
+  <div class="card-2-description">
+    <h2 ng-bind-html="item.offer_title"></h2>
+    <p ng-bind-html="item.category_name"></p>
+  </div>
+  <a class="card-2-link" href="#/tab/offer/{{item.id}}" ></a>
+</div>
+       </div>
+        </div>
+
+
+<script id="modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <div class="button button-icon" ng-click="modal.hide()"><span class="icon ion-android-arrow-back"></span></div>
+      <h1 class="title" ng-bind-html="description"></h1>
+      
+    </ion-header-bar>
+
+    <ion-content>   
+
+      <div id="item-info">
+<p ng-bind-html="data.place_description" class="padding"></p>
+</div>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
+  <script id="share.html" type="text/ng-template">
+  <ion-modal-view>
+
+    <ion-header-bar class="bar bar-header bar-light">
+      <h1 class="title" ng-bind-html="titleShare"></h1>
+      <div class="button button-icon" ng-click="share.hide()"><span class="icon ion-ios-close-empty"></span></div>
+    </ion-header-bar>
+
+    <ion-content has-bouncing="false" class="social_share">
+
+      <div class="row row-center">
+      <div class="padding center_content">
+
+        <a ng-click="shareViaFacebook()" class="button icon-left ion-social-facebook button-assertive facebook">Facebook</a>
+        <a ng-click="shareViaTwitter()" class="button icon-left ion-social-twitter button-assertive twitter">Twitter</a>
+        <a ng-click="shareViaWhatsApp()" class="button icon-left ion-social-whatsapp button-assertive whatsapp">WhatsApp</a>
+        <a ng-click="shareViaGoogle()" class="button icon-left ion-social-googleplus button-assertive googleplus">Google Plus</a>
+        <a ng-click="OtherShare()" class="button icon-left ion-android-share-alt button-assertive othershare" ng-bind-html="otherShare"></a>
+
+      </div>
+    </div>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
+        
+</ion-content>
+</ion-view>

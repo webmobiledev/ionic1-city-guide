@@ -1,0 +1,24 @@
+<ion-view>
+<ion-nav-title>{{titlenews}}</ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-search" href="#/tab/nsearch"></a>
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false" class="padding">
+
+<h3 class="title_center_with_border">{{selectCategory}}</h3>
+
+<div class="row flex_wrap">
+<div class="col col-33" ng-repeat="item in news_categories">
+<div class="image_1">
+<a href="#/tab/ncategory/{{item.id}}">
+<img cache-src="{{imagesfolder}}/{{item.news_category_image}}">
+<h5 ng-bind-html="item.news_category_name"></h5>
+</a>
+</div>
+</div>
+</div>
+
+</ion-content>
+</ion-view>

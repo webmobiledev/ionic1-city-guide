@@ -1,0 +1,73 @@
+<ion-view>
+<ion-nav-title ng-bind-html="titlenews"></ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-android-share-alt" ng-click="share.show()"></a>
+<a class="button button-icon icon ion-android-star" ng-click="addTofavorite(data)"></a>
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false">
+
+<span style="display: none;">{{data.id}}</span>
+
+<div class="image-post" style="margin: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{data.news_image}}')" src-is="background">
+
+</div>
+
+<div class="padding" id="news_post">
+  <h4 ng-bind-html="data.news_title"></h4>
+  <i class="ion-android-time"></i> <span>Published {{data.news_date | date:'dd-MM-yyyy'}} in <span class="category" ng-bind-html="data.category_name"></span></span>
+</div>
+
+<div class="padding post">
+  <div ng-bind-html="data.news_description"></div>
+</div>
+
+<a class="item item_title" href="#/tab/ncategories">
+    {{relatedNewstext}}
+<span class="item-note" ng-bind-html="moretext"></span>
+</a>
+
+  <div class="row flex_wrap">
+<div class="col col-50 col-res-33" ng-repeat="item in news | limitTo: 10" ng-if="item.news_category==data.news_category&&item.news_id!=data.news_id">
+
+      <a href="#/tab/post/{{item.id}}">
+          <div class="card_material">
+            <div class="card_material-image">
+              <img cache-src="{{imagesfolder}}/{{item.news_image}}">
+              <span class="card_material-title" ng-bind-html="item.news_title"></span>
+            </div>
+          </div>
+          </a>
+</div>
+</div>
+
+  <script id="share.html" type="text/ng-template">
+  <ion-modal-view>
+
+    <ion-header-bar class="bar bar-header bar-light">
+      <h1 class="title" ng-bind-html="titleShare"></h1>
+      <div class="button button-icon" ng-click="share.hide()"><span class="icon ion-ios-close-empty"></span></div>
+    </ion-header-bar>
+
+    <ion-content has-bouncing="false" class="social_share">
+
+      <div class="row row-center">
+      <div class="padding center_content">
+
+      
+        <a ng-click="shareViaFacebook()" class="button icon-left ion-social-facebook button-assertive facebook">Facebook</a>
+        <a ng-click="shareViaTwitter()" class="button icon-left ion-social-twitter button-assertive twitter">Twitter</a>
+        <a ng-click="shareViaWhatsApp()" class="button icon-left ion-social-whatsapp button-assertive whatsapp">WhatsApp</a>
+        <a ng-click="shareViaGoogle()" class="button icon-left ion-social-googleplus button-assertive googleplus">Google Plus</a>
+        <a ng-click="OtherShare()" class="button icon-left ion-android-share-alt button-assertive othershare" ng-bind-html="otherShare"></a>
+
+      </div>
+    </div>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
+        
+</ion-content>
+</ion-view>

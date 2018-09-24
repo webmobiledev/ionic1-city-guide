@@ -1,0 +1,21 @@
+<ion-view>
+<ion-nav-title ng-bind-html="data.place_type_name"></ion-nav-title>
+
+<ion-content has-bouncing="false">
+
+  <div class="row flex_wrap">
+<div class="col col-50 col-res-33" ng-repeat="item in places" ng-if="data.place_type_id==item.place_type">
+
+			<a href="#/tab/place/{{item.id}}">
+          <div class="card_material">
+            <div class="card_material-image">
+              <img cache-src="{{imagesfolder}}/{{item.place_image}}">
+              <span class="card_material-title" ng-bind-html="item.place_name"></span>
+            </div>
+          </div>
+          </a>
+</div>
+</div>
+
+</ion-content>
+</ion-view>

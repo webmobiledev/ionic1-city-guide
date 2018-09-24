@@ -1,0 +1,32 @@
+<ion-view>
+<ion-nav-title>{{titleNewssearch}}</ion-nav-title>
+
+<ion-content has-bouncing="false">
+
+<div class="padding" id="item-search" style="padding-bottom: 0;">
+<div class="list list-inset">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="{{inputext}}" ng-model="query">
+  </label>
+</div>
+</div>
+
+  <div class="row flex_wrap" style="margin-top: 0px;padding-top: 0">
+<div class="col col-100 col-res-50" ng-repeat="item in (filtereditems = (news | filter: query))" style="margin-bottom: 5px;border-bottom: 1px solid #eee;">
+    <a class="item item-avatar item-icon-right" href="#/tab/post/{{item.id}}" style="border: none;">
+      <img cache-src="{{imagesfolder}}/{{item.news_image}}">
+      <h2 ng-bind-html="item.news_title" style="font-size: 14px;"></h2>
+      <i class="icon ion-ios-arrow-right" style="color: #eeeeee;"></i>
+      <p ng-bind-html="item.category_name"></p>
+    </a>
+</div>
+</div>
+
+<div class="padding" style="text-align: center;" ng-show="!filtereditems.length">
+{{searchresults}}
+</div>
+
+
+</ion-content>
+</ion-view>

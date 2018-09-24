@@ -1,0 +1,74 @@
+<ion-view>
+<ion-nav-title>{{accountTitle}}</ion-nav-title>
+
+<ion-nav-buttons side="right">
+</ion-nav-buttons>
+ 
+<ion-content has-bouncing="false" class="padding">
+
+<div ng-repeat="item in users" ng-if="item.user_id==id_user" style="margin-bottom: 10px;">
+	
+<div class="list actions-2">
+
+  <a class="item">
+    {{accountFirstName}}
+    <span class="item-note">
+      {{item.user_firstname}}
+    </span>
+  </a>
+
+  <a class="item">
+    {{accountLastName}}
+    <span class="item-note">
+      {{item.user_lastname}}
+    </span>
+  </a>
+
+  <a class="item">
+    {{accountPhone}}
+    <span class="item-note">
+      {{item.user_phone}}
+    </span>
+  </a>
+
+  <a class="item">
+    {{accountEmail}}
+    <span class="item-note">
+      {{item.user_email}}
+    </span>
+  </a>
+
+</div>
+</div>
+
+<div class="list actions">
+
+  <a class="item item-icon-left item-icon-right" href="#/tab/favorites">
+    <i class="icon ion-android-star"></i>
+    {{favoritesTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+  <a class="item item-icon-left item-icon-right" href="#/tab/purchases">
+    <i class="icon ion-android-cart"></i>
+    {{purchasesTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+  <a class="item item-icon-left item-icon-right" href="#/tab/contact">
+    <i class="icon ion-android-mail"></i>
+    {{contactTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+  <a class="item item-icon-left item-icon-right" ng-click="doLogout()">
+    <i class="icon ion-android-lock"></i>
+    {{signoutTitle}}
+    <i class="icon ion-ios-arrow-right"></i>
+  </a>
+
+
+</div>
+
+</ion-content>
+</ion-view>

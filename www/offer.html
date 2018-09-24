@@ -1,0 +1,125 @@
+<ion-view>
+<ion-nav-title ng-bind-html="offerDetailsTitle"></ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-android-share-alt" ng-click="share.show()"></a>
+<a class="button button-icon icon ion-android-star" ng-click="addTofavorite(data)"></a>
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false">
+
+
+<div class="image-post" style="margin: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{data.offer_image}}')" src-is="background">
+
+</div>
+
+<span style="display: none;">{{data.id}}</span>
+
+<div class="padding" id="offer" style="padding-bottom: 0;">
+
+    <span class="category-offer">
+      <span ng-bind-html="data.category_name"></span>
+    </span>
+
+  <h4 ng-bind-html="data.offer_title"></h4>
+
+  <a class="item item_title" style="border: none; padding: 10px 0px;">
+    <span class="offer_price"><span ng-bind-html="discountpriceText"></span> {{data.offer_price}}{{currency}} <br/><span class="offer_oldprice"><span ng-bind-html="oldpriceText"></span> {{data.offer_oldprice}}{{currency}}</span> </span>
+    
+  </a>
+
+    <span class="save-offer">
+      <span ng-bind-html="savetext"></span>
+      {{data.offer_oldprice-data.offer_price}}{{currency}}
+    </span>
+  
+</div>
+
+<div class="row flex_wrap">
+
+<div class="col col-50 col-res-50">
+  <h5 class="title_border" ng-bind-html="addedtext"></h5>
+  <span class="color_gray" ng-bind-html="data.offer_date_start"></span>  
+</div>
+
+<div class="col col-50 col-res-50">
+  <h5 class="title_border" ng-bind-html="expiretext"></h5>
+  <span class="color_gray" ng-bind-html="data.offer_date_end"></span>
+</div>
+</div>
+
+<div class="padding" id="offer">
+
+  <h5 class="title_border" ng-bind-html="detailsofferText"></h5>
+  <p ng-bind-html="data.offer_description"></p>
+
+  <h5 class="title_border" ng-bind-html="howtouseOfferText"></h5>
+  <p ng-bind-html="data.offer_terms"></p>
+
+  <br/>
+
+</div>
+
+<a class="item item_title" style="text-align: center;" ng-bind-html="buynow">
+</a>
+
+<div class="padding">
+
+  <a class="pagos" ng-click="paypal(paymentpaypal)" style="margin-bottom: 0px;">
+  <img src="img/paypal.png">
+  </a>
+
+  <!--<a class="pagos" ng-click="stripe(paymentstripe)">
+  <img src="../img/stripe.png">
+  </a>-->
+
+</div>
+
+  <script id="share.html" type="text/ng-template">
+  <ion-modal-view>
+
+    <ion-header-bar class="bar bar-header bar-light">
+      <h1 class="title" ng-bind-html="titleShare"></h1>
+      <div class="button button-icon" ng-click="share.hide()"><span class="icon ion-ios-close-empty"></span></div>
+    </ion-header-bar>
+
+    <ion-content has-bouncing="false" class="social_share">
+
+      <div class="row row-center">
+      <div class="padding center_content">
+
+      
+        <a ng-click="shareViaFacebook()" class="button icon-left ion-social-facebook button-assertive facebook">Facebook</a>
+        <a ng-click="shareViaTwitter()" class="button icon-left ion-social-twitter button-assertive twitter">Twitter</a>
+        <a ng-click="shareViaWhatsApp()" class="button icon-left ion-social-whatsapp button-assertive whatsapp">WhatsApp</a>
+        <a ng-click="shareViaGoogle()" class="button icon-left ion-social-googleplus button-assertive googleplus">Google Plus</a>
+        <a ng-click="OtherShare()" class="button icon-left ion-android-share-alt button-assertive othershare" ng-bind-html="otherShare"></a>
+
+      </div>
+    </div>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<a class="item item_title" href="#/tab/ocategories">
+    {{relatedOfferstext}}
+<span class="item-note" ng-bind-html="moretext"></span>
+</a>
+
+<div class="row responsive-sm flex_wrap">
+        <div class="col col-100 col-res-50" ng-repeat="item in offers | limitTo: 15" ng-if="item.offer_category==data.offer_category&&item.offer_id!=data.offer_id" style="margin-bottom: 0px;">
+<div class="card-2" style="margin: 0;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('{{imagesfolder}}/{{item.offer_image}}');">
+  <div class="card-2-category"><span class="card-2-price">{{item.offer_price}}{{currency}}</span> <span class="card-2-oldprice">{{item.offer_oldprice}}{{currency}}</span></div>
+  <div class="card-2-description">
+    <h2 ng-bind-html="item.offer_title"></h2>
+    <p ng-bind-html="item.category_name"></p>
+  </div>
+  <a class="card-2-link" href="#/tab/offer/{{item.id}}" ></a>
+</div>
+       </div>
+        </div>
+
+        
+</ion-content>
+</ion-view>

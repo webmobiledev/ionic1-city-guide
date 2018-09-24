@@ -1,0 +1,27 @@
+<ion-view>
+<ion-nav-title ng-bind-html="data.news_category_name"></ion-nav-title>
+
+<ion-nav-buttons side="right">
+<a class="button button-icon icon ion-search" href="#/tab/nsearch"></a>
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false">
+
+
+<div class="row responsive-sm flex_wrap">
+        <div class="col col-100 col-res-50" ng-repeat="item in news" ng-if="item.news_category==data.news_category_id" style="margin-bottom: 0px;">
+        <a href="#/tab/post/{{item.id}}">
+
+          <div class="card_material">
+            <div class="card_material-image">
+              <img cache-src="{{imagesfolder}}/{{item.news_image}}">
+              <span class="card_material-title" ng-bind-html="item.news_title" style="font-size: 16px; padding-bottom: 15px;"></span>
+            </div>
+          </div>
+          </a>
+
+        </div>
+        </div>
+
+</ion-content>
+</ion-view>

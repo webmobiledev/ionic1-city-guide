@@ -1,0 +1,22 @@
+<ion-view>
+<ion-nav-title>{{aboutusTitle}}</ion-nav-title>
+
+<ion-nav-buttons side="right">
+</ion-nav-buttons>
+
+<ion-content has-bouncing="false" class="padding">
+
+
+
+<div ng-repeat="item in strings">
+<p ng-bind-html="item.st_aboutus"></p>
+</div>
+
+<div class="text-center footer_links">
+  
+  <a class="button button-small button-block button-outline button-stable" href="#/tab/terms" ng-bind-html="termsTitle"></a>
+  <a class="button button-small button-block button-outline button-stable" href="#/tab/privacy" ng-bind-html="privacyTitle"></a>
+</div>
+
+</ion-content>
+</ion-view>
